@@ -1,5 +1,9 @@
 <resources>
     <string name="app_name">MusicPlus</string>
-    <string name="tab_text_1">Tab 1</string>
-    <string name="tab_text_2">Tab 2</string>
+    <string name="tab_text_1">песни</string>
+    <string name="tab_text_2">альбомы</string>
+    <string name="tab_text_3">списки воспроизведения</string>
+    <string name="tab_text_4">интернет-радио</string>
+    <string name="tab_text_5">поиск</string>
+    <string name="tab_text_6">настройки</string>
 </resources>
