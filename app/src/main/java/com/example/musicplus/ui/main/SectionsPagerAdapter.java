@@ -9,6 +9,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.example.musicplus.R;
+import com.example.musicplus.musicList.MusicListFragment;
 
 /**
  * A [FragmentPagerAdapter] that returns a fragment corresponding to
@@ -29,6 +30,11 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         // getItem is called to instantiate the fragment for the given page.
         // Return a PlaceholderFragment (defined as a static inner class below).
+        switch (position)
+        {
+            case 0:
+                return MusicListFragment.newInstance(" s","d");
+        }
         return PlaceholderFragment.newInstance(position + 1);
     }
 
