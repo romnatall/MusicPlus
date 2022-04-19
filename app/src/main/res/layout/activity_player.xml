@@ -115,23 +115,6 @@
                 android:background="@drawable/previews_icon"
                 android:layout_toLeftOf="@id/BtnPlay"/>
 
-            <Button
-                android:id="@+id/BtnFastForward"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/forward_icon"
-                android:layout_toRightOf="@id/BtnNext"/>
-
-            <Button
-                android:id="@+id/BtnFastRewind"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/rewind_icon"
-                android:layout_toLeftOf="@id/BtnPrevious"/>
-
-
 
             <com.gauravk.audiovisualizer.visualizer.BarVisualizer
                 xmlns:custom="http://schemas.android.com/apk/res-auto"

@@ -1,13 +1,19 @@
 package com.example.musicplus.musicList;
 
+import static android.content.ContentValues.TAG;
+
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.media.MediaMetadataRetriever;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
 import android.os.Environment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +23,7 @@ import com.example.musicplus.R;
 
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.MediaController.MediaPlayerControl;
 import android.widget.TextView;
@@ -43,6 +50,7 @@ public class MusicListFragment extends Fragment {
     ListView listView;
     String[] items;
     Context context;
+    Bitmap[] covers ;
 
     public MusicListFragment(Context context) {
         this.context=context;
@@ -58,20 +66,21 @@ public class MusicListFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        runTimePermission();
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view =inflater.inflate(R.layout.fragment_music_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_music_list, container, false);
         listView = (ListView) view.findViewById(R.id.ListView);
+        runTimePermission();
         return view;
     }
 
 
-    //Method To Ask access for the external storeage
+    //Method To Ask access for the external storage
     public void runTimePermission() {
         Dexter.withContext(context)
                 .withPermissions(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.RECORD_AUDIO)
@@ -104,13 +113,12 @@ public class MusicListFragment extends Fragment {
 
             //Adding the directory to arrayList if it is not hidden
             if (singleFile.isDirectory() && !singleFile.isHidden()) {
-
                 arrayList.addAll(findSong(singleFile));
-
             } else {
                 //Adding the single music file to ArrayList
                 if (singleFile.getName().endsWith(".mp3") || singleFile.getName().endsWith(".wav")) {
                     arrayList.add(singleFile);
+
                 }
             }
         }
@@ -118,14 +126,33 @@ public class MusicListFragment extends Fragment {
         return arrayList;
     }
 
+    Bitmap GetImage(String filepath)              //filepath is path of music file
+    {
+        Bitmap image;
+
+        MediaMetadataRetriever mData=new MediaMetadataRetriever();
+        try{
+            mData.setDataSource(filepath);
+            byte art[]=mData.getEmbeddedPicture();
+            image= BitmapFactory.decodeByteArray(art, 0, art.length);
+        }
+        catch(Exception e)
+        {
+            image=null;
+        }
+        return image;
+    }
+
     public void displaySong() {
 
         final ArrayList<File> mySongs = findSong(Environment.getExternalStorageDirectory());
         items = new String[mySongs.size()];
-
+        covers= new Bitmap [mySongs.size()];
         //Adding all the music file without extensions to ArrayList
         for (int i = 0; i < mySongs.size(); i++) {
             items[i] = mySongs.get(i).getName().toString().replace(".mp3", "").replace(".wav", "");
+            Bitmap b=GetImage(mySongs.get(i).getAbsolutePath());
+            covers[i]=b;
         }
 
         //Calling the adapter and setting it to ListView
@@ -153,6 +180,10 @@ public class MusicListFragment extends Fragment {
 
     class CustomAdapter extends BaseAdapter {
 
+        CustomAdapter()
+        {
+
+        }
         @Override
         public int getCount() {
             //Returning the count of total songs in an ArrayList
@@ -175,6 +206,11 @@ public class MusicListFragment extends Fragment {
             //Inflating all the single music files in a Layout File
             View view = getLayoutInflater().inflate(R.layout.song_name_layout, null);
             TextView txtSong = view.findViewById(R.id.SongName);
+            ImageView imageView = view.findViewById(R.id.SongCover);
+
+            Bitmap cov=covers[position];
+            if (cov!=null)
+                imageView.setImageBitmap(cov);
             txtSong.setSelected(true);
             txtSong.setText(items[position]);
             return view;

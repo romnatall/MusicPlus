@@ -26,7 +26,7 @@ import java.util.ArrayList;
 
 public class PlayerActivity extends AppCompatActivity {
 
-    Button btnPlay, btnNext, btnPrevious, btnFastForward, btnFastBackWard;
+    Button btnPlay, btnNext, btnPrevious ;
     TextView txtSongName, txtSongStart, txtSongEnd;
     SeekBar seekMusicBar;
     BarVisualizer barVisualizer;
@@ -52,9 +52,6 @@ public class PlayerActivity extends AppCompatActivity {
         btnPlay = (Button) findViewById(R.id.BtnPlay);
         btnNext = (Button) findViewById(R.id.BtnNext);
         btnPrevious = (Button) findViewById(R.id.BtnPrevious);
-        btnFastForward = (Button) findViewById(R.id.BtnFastForward);
-        btnFastBackWard = (Button) findViewById(R.id.BtnFastRewind);
-
 
         txtSongName = (TextView) findViewById(R.id.SongTxt);
         txtSongStart = (TextView) findViewById(R.id.TxtSongStart);
@@ -249,12 +246,9 @@ public class PlayerActivity extends AppCompatActivity {
                 //Extracting the duration of the song
                 songEndTime();
 
-
                 //Animating the ImageView
                 startAnimation(imageView, 360f);
                 visualizer();
-
-
             }
         });
 
@@ -292,34 +286,6 @@ public class PlayerActivity extends AppCompatActivity {
 
             }
 
-        });
-
-
-        //Implementing the fastForward
-        btnFastForward.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (mediaPlayer.isPlaying()) {
-
-                    //Getting the current position and adding 10sec to it
-                    mediaPlayer.seekTo(mediaPlayer.getCurrentPosition() + 10000);
-
-                }
-            }
-        });
-
-
-        //Implementing the FastBackWard
-        btnFastBackWard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (mediaPlayer.isPlaying()) {
-
-                    //Getting the curent Position of the song and decrease 10sec from it
-                    mediaPlayer.seekTo(mediaPlayer.getCurrentPosition() - 10000);
-
-                }
-            }
         });
 
     }
