@@ -37,8 +37,6 @@ public class MainActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.PlayerFragment, MusicPlayerFragment.class, null)
                 .commit();
-
-
     }
 
 }

@@ -5,13 +5,11 @@
     android:layout_height="match_parent"
     tools:context=".musicList.MusicListFragment">
 
-
     <ListView
         android:id="@+id/ListView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:divider="@android:color/transparent"
-        android:padding="9dp"
-        android:dividerHeight="10sp"/>
+        android:divider="@color/black"
+        android:outlineProvider="none"/>
 
 </FrameLayout>
