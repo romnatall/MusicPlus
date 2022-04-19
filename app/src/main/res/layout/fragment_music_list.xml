@@ -5,10 +5,13 @@
     android:layout_height="match_parent"
     tools:context=".musicList.MusicListFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+    <ListView
+        android:id="@+id/ListView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:divider="@android:color/transparent"
+        android:padding="9dp"
+        android:dividerHeight="10sp"/>
 
 </FrameLayout>

@@ -33,7 +33,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
         switch (position)
         {
             case 0:
-                return MusicListFragment.newInstance(" s","d");
+                return MusicListFragment.newInstance(mContext.getApplicationContext());
         }
         return PlaceholderFragment.newInstance(position + 1);
     }

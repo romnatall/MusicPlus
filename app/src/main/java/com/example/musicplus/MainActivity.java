@@ -2,6 +2,7 @@ package com.example.musicplus;
 
 import android.os.Bundle;
 
+import com.example.musicplus.MusicPlayer.MusicController;
 import com.example.musicplus.MusicPlayer.MusicPlayerFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -20,7 +21,6 @@ import android.widget.MediaController.MediaPlayerControl;
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,5 +38,7 @@ public class MainActivity extends AppCompatActivity {
                 .add(R.id.PlayerFragment, MusicPlayerFragment.class, null)
                 .commit();
 
+
     }
+
 }
