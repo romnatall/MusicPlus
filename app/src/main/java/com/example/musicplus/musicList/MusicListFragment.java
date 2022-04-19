@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.musicplus.MusicPlayer.PlayerActivity;
 import com.example.musicplus.R;
 
 import android.widget.AdapterView;
@@ -139,12 +140,12 @@ public class MusicListFragment extends Fragment {
                 String songName = (String) listView.getItemAtPosition(i);
 
                 //Calling the next intent and sending the Required Details to play the songs
-                /*
+
                 Intent intent = new Intent(context, PlayerActivity.class);
                 intent.putExtra("songs", mySongs);
                 intent.putExtra("songname", songName);
                 intent.putExtra("pos", i);
-                startActivity(intent);*/
+                startActivity(intent);
             }
         });
     }
